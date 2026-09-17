@@ -1,0 +1,6 @@
+{
+  "name": "ALPHABIT — Portafolio de Agencia Digital",
+  "description": "Sitio web de portafolio profesional para ALPHABIT, agencia de servicios digitales en El Salvador, consumiendo datos dinámicos vía API REST con HTML, CSS y JavaScript vanilla.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

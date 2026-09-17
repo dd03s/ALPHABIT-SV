@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALPHABIT — Portafolio de Agencia Digital</title>
+    <meta name="description" content="Sitio web de portafolio profesional para ALPHABIT, agencia de servicios digitales en El Salvador, consumiendo datos dinámicos vía API REST con HTML, CSS y JavaScript vanilla." />
+    <meta property="og:title" content="ALPHABIT — Portafolio de Agencia Digital" />
+    <meta property="og:description" content="Sitio web de portafolio profesional para ALPHABIT, agencia de servicios digitales en El Salvador, consumiendo datos dinámicos vía API REST con HTML, CSS y JavaScript vanilla." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Cormorant Garamond & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Pure CSS Stylesheets -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+  </head>
+  <body>
+    <!-- Subtle Background Ambient Glows & Grid Pattern -->
+    <div class="site-ambient-bg" aria-hidden="true">
+      <div class="ambient-glow-top"></div>
+      <div class="ambient-glow-middle"></div>
+      <div class="ambient-grid-overlay"></div>
+    </div>
+
+    <!-- 1. NAVBAR (Sticky with blur transition on scroll) -->
+    <header class="navbar" id="main-navbar">
+      <div class="nav-container">
+        <a href="#inicio" class="nav-logo" id="brand-logo-text" aria-label="ALPHABIT Inicio">
+          <span class="logo-mark">A</span>
+          <span class="logo-text">ALPHABIT</span>
+        </a>
+
+        <div class="nav-actions-wrapper">
+          <nav class="nav-links-desktop" aria-label="Navegación principal">
+            <ul class="nav-menu">
+              <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+              <li><a href="#servicios" class="nav-link">Servicios</a></li>
+              <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+              <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+          </nav>
+
+          <!-- Discrete Call-to-Action -->
+          <a href="#contacto" class="btn-nav-cta" id="nav-cta-btn">
+            <span>Iniciar Proyecto</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- Mobile hamburger menu toggle button -->
+        <button type="button" class="mobile-toggle-btn" id="mobile-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navbar-links">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <!-- Mobile drawer menu -->
+      <div class="mobile-nav-drawer" id="navbar-links" aria-label="Menú de navegación móvil">
+        <ul class="mobile-nav-menu">
+          <li><a href="#proyectos" class="mobile-nav-link">Proyectos</a></li>
+          <li><a href="#servicios" class="mobile-nav-link">Servicios</a></li>
+          <li><a href="#nosotros" class="mobile-nav-link">Nosotros</a></li>
+          <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+          <li class="mobile-nav-cta-wrapper">
+            <a href="#contacto" class="mobile-nav-cta-btn" id="mobile-drawer-cta">
+              <span>Cotizar Proyecto</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- 2. HERO SECTION -->
+      <section class="hero-section" id="inicio">
+        <div class="hero-inner">
+          <div class="hero-agency-badge">
+            <span class="badge-pulse" aria-hidden="true"></span>
+            <span class="country-pill" id="hero-country-pill">El Salvador · Servicios Digitales</span>
+          </div>
+
+          <p class="hero-tagline" id="hero-tagline">SERVICIOS DIGITALES</p>
+          <h1 class="hero-company-name" id="hero-company-name">ALPHABIT</h1>
+          <p class="hero-bio" id="hero-bio">
+            <!-- Dynamically populated from /api/info -->
+            Cargando información institucional...
+          </p>
+
+          <div class="hero-cta-wrapper">
+            <a href="#proyectos" class="btn btn-hero-cta" id="hero-cta-button">
+              <span>Explorar Proyectos</span>
+              <span class="arrow" aria-hidden="true">↓</span>
+            </a>
+            <a href="#contacto" class="btn btn-hero-secondary">
+              <span>Hablemos de tu Marca</span>
+            </a>
+          </div>
+
+          <!-- Stats counter bar (dynamically populated from /api/info) -->
+          <div class="hero-stats-bar" id="hero-stats">
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PROJECTS SECTION (#proyectos) -->
+      <section class="section projects-section" id="proyectos">
+        <div class="section-container">
+          <header class="section-header">
+            <div class="section-header-top">
+              <span class="section-badge">PORTAFOLIO</span>
+              <p class="section-eyebrow">CASOS SELECCIONADOS</p>
+            </div>
+            <h2 class="section-title">Trabajo Reciente</h2>
+            <p class="section-subtitle">Explora nuestra selección de proyectos en diseño de marcas, fotografía y editorial.</p>
+          </header>
+
+          <!-- Category filter bar (horizontal scrollable on mobile) -->
+          <div class="filters-container-wrapper">
+            <div class="filters-container" id="filters-container" role="tablist" aria-label="Filtro de categorías">
+              <!-- Dynamically populated from unique categories in API data -->
+            </div>
+          </div>
+
+          <!-- Project cards grid -->
+          <div class="projects-grid" id="projects-grid" aria-live="polite">
+            <!-- Dynamically rendered or showing skeleton cards while loading -->
+          </div>
+
+          <!-- Pagination "Cargar más proyectos" -->
+          <div class="pagination-container">
+            <button type="button" class="btn-load-more" id="btn-load-more">
+              <span>Cargar más proyectos</span>
+              <span class="arrow" aria-hidden="true">↓</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SERVICES SECTION (#servicios) -->
+      <section class="section services-section" id="servicios">
+        <div class="section-container">
+          <header class="section-header">
+            <div class="section-header-top">
+              <span class="section-badge">DISCIPLINAS</span>
+              <p class="section-eyebrow">ÁREAS DE ENFOQUE</p>
+            </div>
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Soluciones visuales y estratégicas diseñadas a la medida de tu proyecto.</p>
+          </header>
+
+          <!-- Services Grid (from /api/services) -->
+          <div class="services-grid" id="services-grid">
+            <!-- Dynamically rendered from /api/services -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ABOUT SECTION (#nosotros) -->
+      <section class="section about-section" id="nosotros">
+        <div class="section-container">
+          <div class="about-grid">
+            <div class="about-content-col">
+              <div class="section-header-top">
+                <span class="section-badge">AGENCIA</span>
+                <p class="section-eyebrow">NUESTRA ESENCIA</p>
+              </div>
+              <h2 class="section-title">Sobre ALPHABIT</h2>
+              <div class="about-body">
+                <p class="about-description" id="about-description">
+                  <!-- Dynamically populated from /api/info -->
+                  Cargando información desde la agencia...
+                </p>
+              </div>
+
+              <div class="about-meta-row">
+                <div class="about-location-pill" id="about-location-pill">
+                  <span class="location-dot" aria-hidden="true">📍</span>
+                  <span id="about-location-text">El Salvador</span>
+                </div>
+                <div class="about-status-pill">
+                  <span class="status-indicator-dot" aria-hidden="true"></span>
+                  <span>Disponibilidad activa</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-visual-col">
+              <div class="about-visual-box">
+                <div class="about-visual-art">
+                  <div class="art-ring ring-1"></div>
+                  <div class="art-ring ring-2"></div>
+                  <div class="art-brand-block">
+                    <span class="about-visual-brand">ALPHABIT</span>
+                    <span class="about-visual-sub">Servicios Digitales · SV</span>
+                  </div>
+                  <div class="art-accent-tag">Creatividad & Precisión</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CONTACT SECTION (#contacto) -->
+      <section class="section contact-section" id="contacto">
+        <div class="section-container">
+          <div class="contact-card">
+            <div class="contact-grid">
+              <!-- Left Column: Agency Info & Direct Email -->
+              <div class="contact-info-col">
+                <div class="section-header-top">
+                  <span class="section-badge">CONECTEMOS</span>
+                  <p class="section-eyebrow">HABLEMOS</p>
+                </div>
+                <h2 class="contact-heading">¿Tienes un proyecto en mente?</h2>
+                <p class="contact-subtext">
+                  Conversemos sobre cómo elevar la identidad, la narrativa visual y el impacto estético de tu marca o empresa.
+                </p>
+
+                <div class="contact-direct-box">
+                  <span class="direct-box-label">Escríbenos directamente:</span>
+                  <a href="mailto:contacto@alphabit.sv" class="contact-email-link" id="footer-email">
+                    contacto@alphabit.sv
+                  </a>
+                </div>
+
+                <div class="contact-perks-list">
+                  <div class="contact-perk-item">
+                    <span class="perk-check">✓</span>
+                    <span>Respuesta en menos de 24 horas hábiles</span>
+                  </div>
+                  <div class="contact-perk-item">
+                    <span class="perk-check">✓</span>
+                    <span>Asesoría directa y cotización personalizada</span>
+                  </div>
+                  <div class="contact-perk-item">
+                    <span class="perk-check">✓</span>
+                    <span>Proyectos locales en El Salvador e internacionales</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Inquiry Form -->
+              <div class="contact-form-col">
+                <form class="agency-contact-form" id="agency-contact-form" novalidate>
+                  <div class="form-group">
+                    <label for="contact-name" class="form-label">Tu nombre o empresa *</label>
+                    <input type="text" id="contact-name" class="form-input" placeholder="Ej: María González / Studio SV" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-email-input" class="form-label">Correo electrónico *</label>
+                    <input type="email" id="contact-email-input" class="form-input" placeholder="nombre@correo.com" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-service-select" class="form-label">Servicio de interés</label>
+                    <select id="contact-service-select" class="form-select">
+                      <option value="">Selecciona una disciplina...</option>
+                      <!-- Dynamically populated from /api/services -->
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contact-message" class="form-label">Cuéntanos sobre tu proyecto *</label>
+                    <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Breve descripción del alcance, objetivos o fechas estimadas..." required></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-form-submit" id="contact-submit-btn">
+                    <span>Enviar Mensaje</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                  </button>
+                  <div class="form-feedback-toast" id="form-feedback-toast" role="status" aria-live="polite"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top-row">
+          <div class="footer-brand-info">
+            <span class="footer-brand-name">ALPHABIT</span>
+            <span class="footer-tagline-text">Servicios Digitales — El Salvador</span>
+          </div>
+
+          <div class="footer-social-links" id="footer-social-links">
+            <!-- Dynamically populated if socialLinks provided by /api/info -->
+          </div>
+
+          <div class="footer-back-to-top">
+            <a href="#inicio" class="back-to-top-link" aria-label="Volver al inicio">
+              <span>Volver arriba</span>
+              <span class="arrow" aria-hidden="true">↑</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <p class="footer-copy">
+            © <span id="footer-year">2026</span> ALPHABIT. El Salvador. Todos los derechos reservados.
+          </p>
+          <p class="footer-credit">
+            Agencia de Servicios Digitales · El Salvador
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL DETALLE DE PROYECTO (Accessible Dialog) -->
+    <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" aria-hidden="true">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-window">
+        <!-- Close Button (X) sticky top-right -->
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar modal de proyecto">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <!-- Navigation buttons (Previous / Next) -->
+        <div class="modal-nav-bar" aria-label="Navegar entre proyectos">
+          <button type="button" class="modal-nav-btn btn-prev" id="modal-prev-btn" aria-label="Proyecto anterior">
+            <span class="arrow" aria-hidden="true">←</span> Anterior
+          </button>
+          <button type="button" class="modal-nav-btn btn-next" id="modal-next-btn" aria-label="Siguiente proyecto">
+            Siguiente <span class="arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <!-- Scrollable Modal Content Container -->
+        <div class="modal-content-container" id="modal-content-container">
+          <!-- Dynamically populated by render.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Module Script -->
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
